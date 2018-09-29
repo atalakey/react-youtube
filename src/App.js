@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import youtubeSearch from 'youtube-api-v3-search';
+import _ from 'lodash';
 
 import SearchBar from './components/search_bar';
 import VideoDetail from './components/video_detail';
@@ -40,13 +41,15 @@ class App extends Component {
   }
 
   render() {
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
+
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <SearchBar onSearchTermChange={this.videoSearch} />
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})}
