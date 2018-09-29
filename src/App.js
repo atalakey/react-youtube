@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import SearchBar from './components/search_bar';
+import VideoDetail from './components/video_detail';
 import VideoList from './components/video_list';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <SearchBar />
+        <VideoDetail video={this.state.videos[0]}/>
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})}
           videos={this.state.videos}
